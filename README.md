@@ -17,3 +17,15 @@ Para rodar o projeto, execute o seguinte comando na raiz da solução:
 ```bash
 dotnet run --project ScreenSound
 ```
+
+## Criando uma classe
+Definição da classe `Musica`, que vai ficar no arquivo `Musica.cs`:
+```CSharp
+class Musica
+{
+    string nome;
+    string artista;
+    int duracao;
+    bool disponivel;
+}
+```
