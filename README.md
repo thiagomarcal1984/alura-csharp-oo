@@ -199,3 +199,34 @@ class Musica
 > As referências aos atributos foram trocadas pelas propriedades também no programa principal, mas isso será omitido.
 
 > Foi acrescentado no `.gitignore` a regra para não versionar o diretório `.vs/`. É um diretório de cache do Visual Studio.
+
+## Alterando o GET com lambda
+Vamos criar uma propriedade somente leitura chamada `DescricaoResumida` na classe Musica:
+```CSharp
+class Musica
+{
+    public string Nome { get; set; }
+    public string Artista { get; set; }
+    public int Duracao { get; set; }
+    public bool Disponivel { get; set; }
+
+    public string DescricaoResumida
+    {
+        get
+        {
+            return $"A música {Nome} pertence à banda {Artista}";
+        }
+        // private set; // Não precisa escrever o setter.
+    }
+    // Outra forma de escrever uma propriedade sem setter é lambda/arrow function:
+    // public string Descricao => $"Musica: {Nome}; Artista: {Artista}";
+}
+```
+> Outra forma de escrever uma propriedade sem setter é lambda/arrow function:
+> ```CSharp
+> class Musica
+> {
+>     // Resto do código
+>     public string Descricao => $"Musica: {Nome}; Artista: {Artista}";
+> }
+> ```

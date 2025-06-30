@@ -1,6 +1,8 @@
 ﻿Musica musica1 = new Musica();
 musica1.Nome = "Roxane";
 musica1.Artista = "The Police";
+
+Console.WriteLine(musica1.DescricaoResumida);
 musica1.Duracao = 273;
 musica1.Disponivel = true; 
 Console.WriteLine(musica1.Disponivel);

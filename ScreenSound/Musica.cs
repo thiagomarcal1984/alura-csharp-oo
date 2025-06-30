@@ -5,6 +5,17 @@ class Musica
     public int Duracao { get; set; }
     public bool Disponivel { get; set; }
 
+    public string DescricaoResumida
+    {
+        // Outra forma de escrever uma propriedade sem setter é lambda/arrow function:
+        // public string Descricao => $"Musica: {Nome}; Artista: {Artista}";
+        get
+        {
+            return $"A música {Nome} pertence à banda {Artista}";
+        }
+        // private set; // Não precisa escrever o setter.
+    }
+
     public void ExibirFichaTecnica()
     {
         Console.WriteLine($"Nome: {Nome}");
