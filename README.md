@@ -471,3 +471,87 @@ albumDoQueen.ExibirMusicasDoAlbum();
 queen.ExibirDiscografia();
 ```
 > Note como os construtores de música acrescentam atribuições das propriedades não exigidas no construtor: basta acrescentar cada propriedade (formato `Propriedade = valor`) dentro de chaves e separá-los com vírgulas.
+
+# Desafio
+Classe de Episódios:
+```CSharp
+// Episodios.cs
+class Episodio
+{
+    private List<string> convidados = new(); // Note que o new() não informa a classe!
+    public int Ordem { get; }
+    public string Titulo { get; }
+    public int Duracao { get; }
+    public string Resumo => $"{Ordem}. {Titulo} ({Duracao} segs.) - {string.Join(", ", convidados)}";
+
+    public Episodio(int ordem, string titulo, int duracao)
+    {
+        Ordem = ordem;
+        Titulo = titulo;
+        Duracao = duracao;
+    }
+
+    public void AdicionarConvidados(string convidado)
+    {
+        convidados.Add(convidado);
+    }
+}
+```
+> Note que o `new()` não informa a classe ao instanciar o objeto!
+> Note também a propriedade `Resumo`, que usa uma função lambda.
+
+
+Classe de Podcast:
+```CSharp
+// Podcast.cs
+class Podcast
+{
+    private List<Episodio> episodios = new();
+    public string Host { get; }
+    public string Nome { get; }
+    public int TotalEpisodios => episodios.Count;
+
+    public Podcast(string host, string nome)
+    {
+        Host = host;
+        Nome = nome;
+    }
+
+    public void AdicionarEpisodio(Episodio episodio)
+    {
+        episodios.Add(episodio);
+    }
+
+    public void ExibirDetalhes()
+    {
+        Console.WriteLine($"Podcast {Nome} apresentado por {Host}");
+        Console.WriteLine("\nLista de Episódios");
+        foreach (Episodio ep in episodios.OrderBy(ep => ep.Ordem))
+        {
+            Console.WriteLine(ep.Resumo);
+        }
+        Console.WriteLine($"Este podcast possui {TotalEpisodios} episódios.\n");
+        Console.WriteLine($"Duração total: {episodios.Sum(ep => ep.Duracao)} segundos.");
+    }
+}
+```
+> Note que a lista `episodios` usa o método `OrderBy` para possibilitar a ordenação dos objetos da lista conforme um determinado parâmetro de cada objeto.
+> Note também a função lambda na propriedade `TotalEpisodios`.
+
+Código do programa principal:
+```CSharp
+// Program.cs
+Episodio ep1 = new(5, "Índios", 360);
+ep1.AdicionarConvidados("Bruno Bogossian");
+ep1.AdicionarConvidados("Vítor Lacombe");
+
+Episodio ep2 = new(2, "Fábrica", 720);
+ep2.AdicionarConvidados("Tomé Granneman");
+
+Podcast cafe = new("Magê Flores", "Café da manhã");
+
+cafe.AdicionarEpisodio(ep1);
+cafe.AdicionarEpisodio(ep2);
+
+cafe.ExibirDetalhes();
+```
