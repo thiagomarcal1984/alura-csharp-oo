@@ -150,3 +150,35 @@ Console.WriteLine(musica1.LeDisponivel());
 // Resto do código
 musica2.EscreveDisponivel(false);
 ```
+## Properties
+As properties no dotnet são os atributos que possuem getters e setters:
+```CSharp
+// Musica.cs
+class Musica
+{
+    // Resto do código
+    public bool Disponivel { get; set; } 
+
+    public void ExibirFichaTecnica()
+    {
+        // Resto do código
+        if (Disponivel)
+        {
+            // Resto do código
+        }
+    }
+}
+```
+> Propriedades são escritas em formato PascalCase.
+
+Adaptações no programa principal:
+```CSharp
+// Program.cs
+// Resto do código
+musica1.Disponivel = true; 
+Console.WriteLine(musica1.Disponivel);
+
+// Resto do código
+musica2.Disponivel = false;
+// Resto do código
+```
