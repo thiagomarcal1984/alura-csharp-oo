@@ -182,3 +182,20 @@ Console.WriteLine(musica1.Disponivel);
 musica2.Disponivel = false;
 // Resto do código
 ```
+
+## Atributos e propriedades
+Vamos trocar os atributos/campos (sem getters e setters e em camelCase) por propriedades (com getters e setters e em PascalCase):
+```CSharp
+// Musica
+class Musica
+{
+    public string Nome { get; set; }
+    public string Artista { get; set; }
+    public int Duracao { get; set; }
+    public bool Disponivel { get; set; }
+    // Resto do código.
+}
+```
+> As referências aos atributos foram trocadas pelas propriedades também no programa principal, mas isso será omitido.
+
+> Foi acrescentado no `.gitignore` a regra para não versionar o diretório `.vs/`. É um diretório de cache do Visual Studio.
