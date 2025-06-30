@@ -103,3 +103,16 @@ musica2.disponivel = false;
 musica1.ExibirFichaTecnica();
 musica2.ExibirFichaTecnica();
 ```
+# Métodos de acesso e proprieades
+## Atribuindo valores
+Vamos proteger o atributo `disponivel` mudando o nível de acesso dele para private:
+```CSharp
+// Musica.cs
+class Musica
+{
+    // Resto do código
+    private bool disponivel;
+    // Resto do código
+}
+```
+> Isso vai quebrar o acesso a esse atributo no programa principal. Na próxima aula isso será corrigido.
