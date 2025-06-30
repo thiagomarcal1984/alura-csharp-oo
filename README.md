@@ -293,3 +293,52 @@ albumDoQueen.AdicionarMusica(musica2);
 
 albumDoQueen.ExibirMusicasDoAlbum();
 ```
+# Construtor de bandas
+## Desenvolvendo a classe banda
+Definição da classe `Banda`:
+```CSharp
+// Banda.cs
+class Banda
+{
+    private List<Album> albums = new List<Album>();
+    public string Nome { get; set; }
+
+    public void AdicionarAlbum(Album album)
+    {
+        albums.Add(album);
+    }
+
+    public void ExibirDiscografia()
+    {
+        Console.WriteLine($"Discografia da banda {Nome}");
+        foreach (Album album in albums)
+        {
+            Console.WriteLine($"Album: {album.Nome} ({album.DuracaoTotal})");
+        }
+    }
+}
+```
+Novo código do programa principal:
+```CSharp
+// Program.cs
+Album albumDoQueen = new Album()
+{
+    Nome = "A night at the opera"
+};
+
+Musica musica1 = new Musica();
+musica1.Nome = "Love of my life";
+musica1.Duracao = 213;
+
+Musica musica2 = new Musica();
+musica2.Nome = "Bohemian Rhapsody";
+musica2.Duracao = 354;
+
+albumDoQueen.AdicionarMusica(musica1);
+albumDoQueen.AdicionarMusica(musica2);
+
+Banda queen = new Banda();
+queen.Nome = "Queen";
+queen.AdicionarAlbum(albumDoQueen);
+queen.ExibirDiscografia();
+```
