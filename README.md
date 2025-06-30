@@ -342,3 +342,42 @@ queen.Nome = "Queen";
 queen.AdicionarAlbum(albumDoQueen);
 queen.ExibirDiscografia();
 ```
+## Criando um construtor / Relacionamento entre as classes
+Vamos criar um construtor de música que força a definição da banda que fez:
+```CSharp
+// Musica.cs
+class Musica
+{
+    // Resto do código
+
+    // A banda nunca poderá ser mudada, exceto ao construi-la.
+    public Banda Artista { get; }
+
+    public Musica(Banda artista)
+    {
+        Artista = artista;
+    }
+    // Resto do código
+}
+```
+Mudanças no programa principal (uso do construtor de músicas):
+```CSharp
+// Program.cs
+Album albumDoQueen = new Album()
+{
+    Nome = "A night at the opera"
+};
+
+Banda queen = new Banda();
+queen.Nome = "Queen";
+
+Musica musica1 = new Musica(queen);
+// Resto do código
+Musica musica2 = new Musica(queen);
+// Resto do código
+albumDoQueen.AdicionarMusica(musica1);
+albumDoQueen.AdicionarMusica(musica2);
+
+queen.AdicionarAlbum(albumDoQueen);
+queen.ExibirDiscografia();
+```
