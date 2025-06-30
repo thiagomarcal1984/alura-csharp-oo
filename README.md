@@ -230,3 +230,66 @@ class Musica
 >     public string Descricao => $"Musica: {Nome}; Artista: {Artista}";
 > }
 > ```
+
+# Integrando classes e definindo relacionamentos
+A classe `Album` será definida a seguir:
+```CSharp
+// Album.cs
+class Album
+{
+    private List<Musica> musicas = new List<Musica>();
+    public string Nome { get; set; }
+    public int DuracaoTotal => musicas.Sum(m => m.Duracao);
+
+    public void AdicionarMusica(Musica musica)
+    {
+        musicas.Add(musica);
+    }
+
+    public void ExibirMusicasDoAlbum()
+    {
+        Console.WriteLine($"Lista de músicas do álbum {Nome}: \n");
+        musicas.ForEach(obj => Console.WriteLine($"Música: {obj.Nome}"));
+
+        Console.WriteLine($"Para ouvir este álbum inteiro você precisa de {DuracaoTotal} segundos.");
+    }
+}
+```
+> Destques para as funções `musicas.Sum` e `musicas.ForEach`:
+> ```CSharp
+> class Album
+> {
+>     // Resto do código
+>     public int DuracaoTotal => musicas.Sum(m => m.Duracao);
+>     // Resto do código
+> 
+>     public void ExibirMusicasDoAlbum()
+>     {
+>         // Resto do código
+>         musicas.ForEach(obj => Console.WriteLine($"Música: {obj.Nome}"));
+>         // Resto do código
+>     }
+> }
+> ```
+
+Novo conteúdo do programa principal será: 
+```CSharp
+// Program.cs
+Album albumDoQueen = new Album()
+{
+    Nome = "A night at the opera"
+};
+
+Musica musica1 = new Musica();
+musica1.Nome = "Love of my life";
+musica1.Duracao = 213;
+
+Musica musica2 = new Musica();
+musica2.Nome = "Bohemian Rhapsody";
+musica2.Duracao = 354;
+
+albumDoQueen.AdicionarMusica(musica1);
+albumDoQueen.AdicionarMusica(musica2);
+
+albumDoQueen.ExibirMusicasDoAlbum();
+```
