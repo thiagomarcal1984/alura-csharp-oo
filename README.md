@@ -116,3 +116,37 @@ class Musica
 }
 ```
 > Isso vai quebrar o acesso a esse atributo no programa principal. Na próxima aula isso será corrigido.
+
+## Centralizando acesso
+A propriedade booleana `disponível` permanecerá privada, mas será acessada mediante os métodos `EscreveDisponivel` e `LeDisponivel`, implementados a seguir:
+
+```CSharp
+// Musica.cs
+class Musica
+{
+    // Resto do código
+    private bool disponivel;
+
+    public void EscreveDisponivel(bool value)
+    {
+        disponivel = value;
+    }
+
+    public bool LeDisponivel()
+    {
+        return disponivel;
+    }
+    // Resto do código
+}
+```
+
+A implementação do programa principal ficará assim:
+```CSharp
+// Program.cs
+// Resto do código
+musica1.EscreveDisponivel(true);
+Console.WriteLine(musica1.LeDisponivel());
+
+// Resto do código
+musica2.EscreveDisponivel(false);
+```
