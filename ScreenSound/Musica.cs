@@ -1,15 +1,16 @@
 class Musica
 {
-    public string Nome { get; set; }
+    public string Nome { get; } // Propriedade somente leitura.
 
     // A banda nunca poderá ser mudada, exceto ao construi-la.
     public Banda Artista { get; }
     public int Duracao { get; set; }
     public bool Disponivel { get; set; }
 
-    public Musica(Banda artista)
+    public Musica(Banda artista, string nome)
     {
         Artista = artista;
+        Nome = nome;
     }
 
     public string DescricaoResumida
@@ -26,7 +27,7 @@ class Musica
     public void ExibirFichaTecnica()
     {
         Console.WriteLine($"Nome: {Nome}");
-        Console.WriteLine($"Artista: {Artista}");
+        Console.WriteLine($"Artista: {Artista.Nome}");
         Console.WriteLine($"Duração: {Duracao}");
         if (Disponivel)
         {

@@ -381,3 +381,93 @@ albumDoQueen.AdicionarMusica(musica2);
 queen.AdicionarAlbum(albumDoQueen);
 queen.ExibirDiscografia();
 ```
+## Construtores para as classes
+Vamos criar construtores com parâmetros para todas as classes e vamos determinar que a propriedade `Nome` de cada uma delas será somente leitura:
+
+```CSharp
+// Album.cs
+class Album
+{
+    // Resto do código
+    public string Nome { get; } // Propriedade somente leitura.
+    public Album(string nome)
+    {
+        Nome = nome;
+    }
+    // Resto do código
+}
+```
+
+```CSharp
+// Banda.cs
+class Banda
+{
+    // Resto do código
+    public string Nome { get; } // Propriedade somente leitura.
+
+    public Banda(string nome)
+    {
+        Nome = nome;
+    }
+    // Resto do código
+}
+```
+
+```CSharp
+// Musica.cs
+class Musica
+{
+    public string Nome { get; } // Propriedade somente leitura.
+
+    // A banda nunca poderá ser mudada, exceto ao construi-la.
+    public Banda Artista { get; }
+
+    // Resto do código
+
+    public Musica(Banda artista, string nome)
+    {
+        Artista = artista;
+        Nome = nome;
+    }
+    // Resto do código
+    public void ExibirFichaTecnica()
+    {
+        // Resto do código
+        
+        // Antes Artista era string; agora é um objeto da classe Banda
+        Console.WriteLine($"Artista: {Artista.Nome}");
+        // Resto do código
+    }
+}
+```
+
+Implementação do programa principal:
+```CSharp
+// Program.cs
+Album albumDoQueen = new Album("A night at the opera");
+
+Banda queen = new Banda("Queen");
+
+Musica musica1 = new Musica(queen, "Love of my life")
+{
+    Duracao = 213,
+    Disponivel = true,
+};
+
+Musica musica2 = new Musica(queen, "Bohemian Rhapsody")
+{
+    Duracao = 354,
+    Disponivel = false,
+};
+
+albumDoQueen.AdicionarMusica(musica1);
+albumDoQueen.AdicionarMusica(musica2);
+queen.AdicionarAlbum(albumDoQueen);
+
+musica1.ExibirFichaTecnica();
+musica2.ExibirFichaTecnica();
+albumDoQueen.ExibirMusicasDoAlbum();
+
+queen.ExibirDiscografia();
+```
+> Note como os construtores de música acrescentam atribuições das propriedades não exigidas no construtor: basta acrescentar cada propriedade (formato `Propriedade = valor`) dentro de chaves e separá-los com vírgulas.

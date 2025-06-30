@@ -1,7 +1,12 @@
 class Banda
 {
     private List<Album> albums = new List<Album>();
-    public string Nome { get; set; }
+    public string Nome { get; } // Propriedade somente leitura.
+
+    public Banda(string nome)
+    {
+        Nome = nome;
+    }
 
     public void AdicionarAlbum(Album album)
     {
